@@ -9,7 +9,7 @@ export default function Home() {
     <div className="p-4">
       <div className="flex flex-col gap-y-4">
         <div className="">
-          <Button>I am a button</Button>
+          <Button variant={"elevated"}>I am a button</Button>
         </div>
         <div className="">
           <Input placeholder="I am an input" />
