@@ -1,5 +1,5 @@
 import { Category } from "@/payload-types";
-import { CategoryDropdown } from "./cateory-dropdown";
+import { CategoryDropdown } from "./category-dropdown";
 
 interface CategoriesProps {
   data: any;
