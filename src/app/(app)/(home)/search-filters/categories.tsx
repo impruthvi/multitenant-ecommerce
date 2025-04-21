@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 
 import { CustomCategory } from "../types";
 import { CategoryDropdown } from "./category-dropdown";
+import { CategoriesSidebar } from "./categories-sidebar";
 
 interface CategoriesProps {
   data: CustomCategory[];
@@ -61,6 +62,13 @@ export const Categories = ({ data }: CategoriesProps) => {
 
   return (
     <div className="relative w-full">
+      {/* Categories Sidebar */}
+      <CategoriesSidebar
+        open={isSidebarOpen}
+        onOpenChange={setIsSidebarOpen}
+        data={data}
+      />
+
       {/* Hidden div to measure all items */}
       <div
         ref={measureRef}
@@ -104,6 +112,7 @@ export const Categories = ({ data }: CategoriesProps) => {
                 !isAnyHovered &&
                 "bg-white border-primary"
             )}
+            onClick={() => setIsSidebarOpen(true)}
           >
             View All
             <ListFilterIcon />
