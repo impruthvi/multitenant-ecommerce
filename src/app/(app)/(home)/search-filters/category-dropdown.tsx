@@ -27,7 +27,7 @@ export const CategoryDropdown = ({
     if (category.subcategories) setIsOpen(true);
   };
 
-  const OnMouseLeave = () => setIsOpen(false);
+  const onMouseLeave = () => setIsOpen(false);
   const dropdownPosition = getDropdownPosition();
 
   return (
@@ -35,7 +35,7 @@ export const CategoryDropdown = ({
       className="relative"
       ref={dropdownRef}
       onMouseEnter={onMouseEnter}
-      onMouseLeave={OnMouseLeave}
+      onMouseLeave={onMouseLeave}
     >
       <div className="relative">
         <Button
@@ -44,7 +44,7 @@ export const CategoryDropdown = ({
             "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-white hover:border-primary text-black",
             isActive && !isNavigationHover && "bg-white border-primary",
             isOpen &&
-              "bg-white border-primary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-x-[4px] -translate-7-[4px]"
+              "bg-white border-primary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-x-[4px] -translate-y-[4px]"
           )}
         >
           <Link href={`/${category.name === "all" ? "" : category.slug}`}>
