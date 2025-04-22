@@ -4,7 +4,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { Navbar } from "./navbar";
 import { Footer } from "./footer";
-import { SearchFilters } from "./search-filters";
+import { SearchFilters, SearchFiltersSkeleton } from "./search-filters";
 
 interface Props {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ const Layout = async ({ children }: Props) => {
       <Navbar />
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense
-          fallback={<div className="flex-1 bg-[#F4F4F0]">Loading...</div>}
+          fallback={<SearchFiltersSkeleton />}
         >
           <SearchFilters />
         </Suspense>
