@@ -12,19 +12,21 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { CustomCategory } from "../types";
+import { useTRPC } from "@/trpc/client";
+import { useQuery } from "@tanstack/react-query";
 
 interface CategoriesSidebarProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  data: CustomCategory[]; //TODO: remove this later
 }
 
 export const CategoriesSidebar = ({
   open,
   onOpenChange,
-  data,
 }: CategoriesSidebarProps) => {
   const router = useRouter();
+  const trpc = useTRPC();
+  const { data } = useQuery(trpc.categories.getMany.queryOptions());
 
   const [parentCategories, setParentCategories] = useState<
     CustomCategory[] | null
