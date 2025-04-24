@@ -1,1 +1,1 @@
-export const AUTH_COOKIE = "storehub-payload-token";
+export const AUTH_COOKIE = "payload-token";
