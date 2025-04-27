@@ -80,7 +80,7 @@ export const SignUpView = () => {
             <div className="flex items-center justify-between mb-8">
               <Link href="/">
                 <span
-                  className={cn("test-2xl font-semibold", poppins.className)}
+                  className={cn("text-2xl font-semibold", poppins.className)}
                 >
                   StoreHub
                 </span>
