@@ -10,7 +10,6 @@ import { useQuery } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 import { useTRPC } from "@/trpc/client";
 import { Button } from "@/components/ui/button";
-
 import { NavbarSidebar } from "./navbar-sidebar";
 
 const poppins = Poppins({
