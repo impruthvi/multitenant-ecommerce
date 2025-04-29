@@ -10,7 +10,7 @@ import {
   ProductListSkeleton,
 } from "@/modules/products/ui/components/product-list";
 import { ProductFilters } from "@/modules/products/ui/components/product-filters";
-import { loadProductFilters } from "@/modules/products/hooks/use-product-filters";
+import { loadProductFilters } from "@/modules/products/search-params";
 interface Props {
   params: Promise<{
     category: string;
