@@ -52,8 +52,8 @@ export const Products: CollectionConfig = {
                     value: "3-days",
                 },
                 {
-                    label: "1 Days",
-                    value: "1-days",
+                    label: "1 Day",
+                    value: "1-day",
                 },
                 {
                     label: "No Refund",
