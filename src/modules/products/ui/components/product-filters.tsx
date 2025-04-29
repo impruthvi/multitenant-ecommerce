@@ -55,6 +55,8 @@ export const ProductFilters = () => {
     setFilters({
       maxPrice: "",
       minPrice: "",
+      tags: [],
+      sort: "curated",
     });
   };
 

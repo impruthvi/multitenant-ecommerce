@@ -10,7 +10,7 @@ interface PriceFilterProps {
   onMaxPriceChange: (value: string) => void;
 }
 
-export const formateAsCurrency = (value: string) => {
+export const formatAsCurrency = (value: string) => {
   const numericValue = value.replace(/[^0-9.]+/g, "");
 
   const parts = numericValue.split(".");
@@ -38,7 +38,7 @@ export const PriceFilter = ({
   onMaxPriceChange,
   onMinPriceChange,
 }: PriceFilterProps) => {
-  const handleMunPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleMinPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
     const numericValue = e.target.value.replace(/[^0-9.]+/g, "");
     onMinPriceChange(numericValue);
   };
@@ -55,8 +55,8 @@ export const PriceFilter = ({
         <Input
           type="text"
           placeholder="$0"
-          value={minPrice ? formateAsCurrency(minPrice) : ""}
-          onChange={handleMunPriceChange}
+          value={minPrice ? formatAsCurrency(minPrice) : ""}
+          onChange={handleMinPriceChange}
         />
       </div>
 
@@ -65,7 +65,7 @@ export const PriceFilter = ({
         <Input
           type="text"
           placeholder="∞"
-          value={maxPrice ? formateAsCurrency(maxPrice) : ""}
+          value={maxPrice ? formatAsCurrency(maxPrice) : ""}
           onChange={handleMaxPriceChange}
         />
       </div>
