@@ -41,13 +41,27 @@ export const ProductFilters = () => {
     }));
   };
 
+  const hasAnyFilters = Object.entries(filters).some(([, value]) => {
+    if (typeof value === "string") return value !== "";
+    return value !== null;
+  });
+
+  const onClear = () => {
+    setFilters({
+      maxPrice: "",
+      minPrice: "",
+    });
+  };
+
   return (
     <div className="border rounded-md bg-white">
       <div className="p-4 border-b flex items-center justify-between">
         <p className="font-medium">Filters</p>
-        <button className="underline" type="button" onClick={() => {}}>
-          Clear
-        </button>
+        {hasAnyFilters && (
+          <button className="underline cursor-pointer" type="button" onClick={() => onClear()}>
+            Clear
+          </button>
+        )}
       </div>
       <ProductFilter title="Price" className="border-b-0">
         <PriceFilter

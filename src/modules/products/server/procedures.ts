@@ -7,8 +7,8 @@ export const productsRouter = createTRPCRouter({
     getMany: baseProcedure
         .input(z.object({
             category: z.string().nullable().optional(),
-            minPrice: z.number().nullable().optional(),
-            maxPrice: z.number().nullable().optional(),
+            minPrice: z.string().nullable().optional(),
+            maxPrice: z.string().nullable().optional(),
         }))
         .query(async ({ ctx, input }) => {
             const where: Where = {};
