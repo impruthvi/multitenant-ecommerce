@@ -1,7 +1,7 @@
 import z from "zod";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import type { Sort, Where } from "payload";
-import { Category } from "@/payload-types";
+import { Category, Media } from "@/payload-types";
 import { sortValues } from "../search-params";
 
 export const productsRouter = createTRPCRouter({
@@ -95,6 +95,12 @@ export const productsRouter = createTRPCRouter({
                 sort
             });
 
-            return data;
+            return {
+                ...data,
+                docs: data.docs.map((product) => ({
+                    ...product,
+                    image: product.image as Media | null,
+                })),
+            };
         }),
 });
