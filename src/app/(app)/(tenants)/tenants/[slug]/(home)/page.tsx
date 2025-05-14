@@ -8,11 +8,11 @@ import { getQueryClient, trpc } from "@/trpc/server";
 
 interface Props {
   searchParams: Promise<SearchParams>;
-  param: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>;
 }
 
-const Page = async ({ searchParams, param }: Props) => {
-  const { slug } = await param;
+const Page = async ({ searchParams, params }: Props) => {
+  const { slug } = await params;
   const filters = await loadProductFilters(searchParams);
 
   const queryClient = getQueryClient();
