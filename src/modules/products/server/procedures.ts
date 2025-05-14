@@ -1,6 +1,6 @@
 import z from "zod";
 import type { Sort, Where } from "payload";
-import { Category, Media } from "@/payload-types";
+import { Category, Media, Tenant } from "@/payload-types";
 
 import { DEFAULT_LIMIT } from "@/constants";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
@@ -17,6 +17,7 @@ export const productsRouter = createTRPCRouter({
             maxPrice: z.string().nullable().optional(),
             tags: z.array(z.string()).nullable().optional(),
             sort: z.enum(sortValues).nullable().optional(),
+            tenantSlug: z.string().nullable().optional(),
         }))
         .query(async ({ ctx, input }) => {
             const where: Where = {};
@@ -47,6 +48,12 @@ export const productsRouter = createTRPCRouter({
             } else if (input.maxPrice) {
                 where.price = {
                     less_than_equal: input.maxPrice,
+                };
+            }
+
+            if (input.tenantSlug) {
+                where["tenant.slug"] = {
+                    equals: input.tenantSlug,
                 };
             }
 
@@ -95,7 +102,7 @@ export const productsRouter = createTRPCRouter({
 
             const data = await ctx.db.find({
                 collection: "products",
-                depth: 1, // Populate "category" & "image"
+                depth: 2, // Populate "category", "image", "tenant" & "tenant.image"
                 where,
                 sort,
                 limit: input.limit,
@@ -107,6 +114,7 @@ export const productsRouter = createTRPCRouter({
                 docs: data.docs.map((product) => ({
                     ...product,
                     image: product.image as Media | null,
+                    tenant: product.tenant as Tenant & { image: Media | null },
                 })),
             };
         }),
