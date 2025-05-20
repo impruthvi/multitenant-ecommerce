@@ -6,8 +6,34 @@ import { DEFAULT_LIMIT } from "@/constants";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 
 import { sortValues } from "../search-params";
+import { TRPCError } from "@trpc/server";
 
 export const productsRouter = createTRPCRouter({
+
+    getOne: baseProcedure
+        .input(z.object({
+            id: z.string(),
+        }))
+        .query(async ({ ctx, input }) => {
+            const product = await ctx.db.findByID({
+                collection: "products",
+                id: input.id,
+                depth: 2, // Populate "product.image", "product.tenant", & "product.tenant.image"
+            });
+
+            if (!product) {
+                throw new TRPCError({
+                    code: "NOT_FOUND",
+                    message: `Product ${input.id} not found`,
+                });
+            }
+
+            return {
+                ...product,
+                image: product.image as Media | null,
+                tenant: product.tenant as Tenant & { image: Media | null },
+            };
+        }),
     getMany: baseProcedure
         .input(z.object({
             cursor: z.number().default(1),
