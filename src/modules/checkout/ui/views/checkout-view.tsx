@@ -39,7 +39,7 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
         // TODO: Modify when subdomain enabled
         router.push("/sign-in")
       }
-
+      setStates({ success: false, cancel: true });
       toast.error(error.message || "Failed to initiate checkout. Please try again.");
     }
   }));
