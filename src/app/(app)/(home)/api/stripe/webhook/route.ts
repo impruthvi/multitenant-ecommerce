@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         );
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        if (error! instanceof Error) {
+        if (error instanceof Error) {
             console.error('Stripe webhook error:', error);
         }
 
